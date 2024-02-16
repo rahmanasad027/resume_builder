@@ -1,0 +1,17 @@
+{
+  "name": "Resume-builder-backend",
+  "version": "1.0.0",
+  "description": "Backend code for Resume Builder",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "asad Rahman",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
