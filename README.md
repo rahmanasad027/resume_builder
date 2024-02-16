@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+# Directory Structure
+This project is a Resume builder to build interactive resume for yourself. File directory is divided into Four main parts: 
+1- Components: includes all the necessary components of this application.
+2- assets: includes things like images.
+3- zustand: includes state management with zustand library which is a light weight easy to use Redux like state management library.
+4- Api: this directory includes hooks for Api calls and an axios middleware.
+
 ## Available Scripts
 
 In the project directory, you can run:
