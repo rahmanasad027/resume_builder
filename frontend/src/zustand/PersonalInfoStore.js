@@ -1,8 +1,8 @@
 import create from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { persist } from 'zustand/middleware';
-// import zukeeper from 'zukeeper';
 
+//  hook to manage zustand store. We are storing initial state in store and updating it when setPersonalInfo and resetPersonalInfo hooks are being called
 const usePersonalInfoStore = create(
   persist(
     devtools((set) => ({
@@ -14,11 +14,6 @@ const usePersonalInfoStore = create(
         email: '',
         skills: '',
         interests: '',
-        // visitDate: '',
-        // mlc: '',
-        // age: '',
-        // gender: '',
-        // token: ''
       },
       setPersonalInfo: (data, callback) => {
         set(() => ({ patientData: data }));
@@ -36,11 +31,6 @@ const usePersonalInfoStore = create(
             email: '',
             skills: '',
             interests: '',
-            // visitDate: '',
-            // mlc: '',
-            // age: '',
-            // gender: '',
-            // token: ''
           }
         }));
       }
