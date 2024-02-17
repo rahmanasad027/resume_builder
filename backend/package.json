@@ -4,7 +4,8 @@
   "description": "Backend code for Resume Builder",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node index.js"
   },
   "author": "asad Rahman",
   "license": "ISC",
