@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 import usePersonalInfoStore from '../../../../zustand/PersonalInfoStore';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {personalInfoAPI} from '../../../../api/personalInfo'
 
 const PersonalInfo = () => {
   const [errors, setErrors] = useState({});
@@ -15,12 +16,14 @@ const PersonalInfo = () => {
   const resetPersonalInfo = usePersonalInfoStore(state => state.resetPersonalInfo);
   const [personalInfo, setPersonalInfo] = useState(initialPersonalInfo);
 
-
+  // update component state everytime zustand state is updated
   useEffect(() => {
     if (initialPersonalInfo) {
       setPersonalInfo(initialPersonalInfo);
     }
   }, [initialPersonalInfo]);
+
+// to mangae change in states for input fields
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,17 +44,39 @@ const PersonalInfo = () => {
       [name]: errorMessage,
     }));
   };
-
+//  store data to zustand store and call api to save data in mongodb. show toast messages for both successful adn failed responses.
   const handleSubmit = () => {
     usePersonalInfoStore.setState({personalInfo})
-      toast.success('Data has been sent!', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 2000, // Duration in milliseconds
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
+      const personalInformation = usePersonalInfoStore.getState().personalInfo;
+      console.log('zustand personal information:' , personalInformation)
+      personalInfoAPI(personalInformation)
+        .then(response => {
+          // Check if the response is successful
+            // Show success toast message
+            toast.success('Data has been sent!', {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 2000,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+  console.log('response', response)
+        })
+        .catch(error => {
+          // Show error toast message for any other errors
+          toast.error('An error occurred while sending data. Please try again later.', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 2000,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          console.error('Error:', error);
+        });
+
   };
+
+// empty all input fields and reset states to be empty
 
   const handleReset = () => {
     resetPersonalInfo()  //reset the zustand state to empty

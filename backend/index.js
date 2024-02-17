@@ -1,22 +1,31 @@
 const express = require('express');
+const personalInfoRoute = require('./routes/personalInfoRoute');
+const connectDB = require('./dbConnection')
+const mongoose = require('mongoose')
+const cors = require('cors');
+
 const app = express();
 const PORT = process.env.PORT || 3010;
-
-// Middleware to parse JSON requests
+// allow requests to be managed from different origins.
+app.use(cors());
 app.use(express.json());
+// initializing DB connection
+connectDB().catch(console.dir);
 
-// Routes
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
+mongoose.connection.on('error', err => {
+  console.log(err);
 });
+// Routes
+app.use('/data', personalInfoRoute);
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
-
-// Start server
+//  backend server port
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
+module.exports = app
