@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../index');
 
 describe('Post Endpoints', () => {
-  it('should create a new post', async () => {
+  it('should create a new personal Info dataset', async () => {
     const res = await request(app)
       .post('/data') // Adjust the endpoint URL
       .send({

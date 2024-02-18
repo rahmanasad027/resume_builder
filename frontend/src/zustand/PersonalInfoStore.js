@@ -16,7 +16,7 @@ const usePersonalInfoStore = create(
         interests: '',
       },
       setPersonalInfo: (data, callback) => {
-        set(() => ({ patientData: data }));
+        set(() => ({ personalData: data }));
         if (callback && typeof callback === 'function') {
           callback();
         }
