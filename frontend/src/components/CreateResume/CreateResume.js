@@ -1,12 +1,12 @@
-import React from 'react'
-import Resume from './Resume/Resume'
+import React from "react";
+import Resume from "./Resume/Resume";
 
 const CreateResume = () => {
   return (
     <div data-testid="create-resume">
-    <Resume />
+      <Resume />
     </div>
-  )
-}
+  );
+};
 
-export default CreateResume
+export default CreateResume;
