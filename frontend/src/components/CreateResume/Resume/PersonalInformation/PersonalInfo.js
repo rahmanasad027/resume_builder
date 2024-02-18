@@ -48,7 +48,6 @@ const PersonalInfo = () => {
   const handleSubmit = () => {
     usePersonalInfoStore.setState({personalInfo})
       const personalInformation = usePersonalInfoStore.getState().personalInfo;
-      console.log('zustand personal information:' , personalInformation)
       personalInfoAPI(personalInformation)
         .then(response => {
           // Check if the response is successful
@@ -60,7 +59,6 @@ const PersonalInfo = () => {
               pauseOnHover: true,
               draggable: true,
             });
-  console.log('response', response)
         })
         .catch(error => {
           // Show error toast message for any other errors
@@ -71,7 +69,6 @@ const PersonalInfo = () => {
             pauseOnHover: true,
             draggable: true,
           });
-          console.error('Error:', error);
         });
 
   };
@@ -86,7 +83,7 @@ const PersonalInfo = () => {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Patient General Information
+        Personal Information
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>

@@ -7,7 +7,8 @@ const personalInfoSchema = new mongoose.Schema({
   contact: { type: String },
   email: { type: String},
   skills: { type: String },
-  interests: { type: String }
+  interests: { type: String },
+  createdAt: { type: Date, default: Date.now }
 });
 
 const PersonalInfoModel = mongoose.model('PersonalInfo', personalInfoSchema);
