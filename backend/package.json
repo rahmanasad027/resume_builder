@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "cd ../frontend && npm run build",
+    "install-packages": "cd ../frontend && npm install",
+    "client": "cd ../frontend && npm start",
+    "heroku-postbuild": "npm run install-packages && npm run build"
   },
   "author": "asad Rahman",
   "license": "ISC",
