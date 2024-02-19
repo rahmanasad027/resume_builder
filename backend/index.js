@@ -8,7 +8,7 @@ const resumeInfoRoute = require("./routes/resumeInfoRoute");
 
 const app = express();
 
-// Middleware
+// Middleware new
 app.use(cors({
   origin: 'https://resume-builder-frontend-seven.vercel.app',
   credentials: true
