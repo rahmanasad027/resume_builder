@@ -4,35 +4,23 @@ import Grid from "@mui/material/Grid";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 
-const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
+const ReviewResume2 = ({ resumeData }) => {
   return (
     <>
-      {apiState ? (
-        isLoading ? (
-          <Typography alignItems="center" variant="h4">
-            Loading Data...
-          </Typography>
-        ) : (
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography alignItems="center" variant="h3">
-                {resumeData?.personalInfo?.name !== ""
-                  ? resumeData?.personalInfo?.name
-                  : "provide a name"}
+                {resumeData?.personalInfo?.name || "provide a name"}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="h5">
-                {resumeData?.personalInfo?.title !== ""
-                  ? resumeData?.personalInfo?.title
-                  : "provide a title"}
+                {resumeData?.personalInfo?.title || "provide a title"}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={8}>
               <Typography variant="h7" gutterBottom sx={{ mt: 2 }}>
-                {resumeData?.personalInfo?.desc !== ""
-                  ? resumeData?.personalInfo?.desc
-                  : "provide a desc"}
+                {resumeData?.personalInfo?.desc || "provide a desc"}
               </Typography>
             </Grid>
             <Grid
@@ -44,9 +32,7 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
               sx={{ marginTop: "20px", marginBottom: "-10px" }}
             >
               <Typography gutterBottom variant="h6" sx={{ marginLeft: "20px" }}>
-                {resumeData?.personalInfo?.email !== ""
-                  ? resumeData?.personalInfo?.email
-                  : "provide an email"}
+                {resumeData?.personalInfo?.email || "provide an email"}
               </Typography>
             </Grid>
             <Grid
@@ -58,11 +44,10 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
               sx={{ marginTop: "20px", marginBottom: "-10px" }}
             >
               <Typography gutterBottom variant="h6" sx={{ marginLeft: "20px" }}>
-                {resumeData?.personalInfo?.contact !== ""
-                  ? resumeData?.personalInfo?.contact
-                  : "provide a contact"}
+                {resumeData?.personalInfo?.contact || "provide a contact"}
               </Typography>
             </Grid>
+
             <Grid
               container
               item
@@ -72,11 +57,10 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
               sx={{ marginTop: "-10px", marginBottom: "-10px" }}
             >
               <Typography gutterBottom variant="h6" sx={{ marginLeft: "20px" }}>
-                {resumeData?.professionalInfo?.linkedin !== ""
-                  ? resumeData?.professionalInfo?.linkedin
-                  : "No linkedin url given please go back and add it"}
+                {resumeData?.professionalInfo?.degree || "provide a degree"}
               </Typography>
             </Grid>
+
             <Grid
               container
               item
@@ -86,9 +70,30 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
               sx={{ marginTop: "-10px", marginBottom: "-10px" }}
             >
               <Typography gutterBottom variant="h6" sx={{ marginLeft: "20px" }}>
-                {resumeData?.professionalInfo?.degree !== ""
-                  ? resumeData?.professionalInfo?.degree
-                  : "provide a degree"}
+                {resumeData?.professionalInfo?.linkedin || "No linkedin url given please go back and add it"}
+              </Typography>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              sx={{ marginTop: "20px", marginBottom: "-10px" }}
+            >
+              <Typography
+                variant="h5"
+                color="dark-grey"
+                gutterBottom
+                sx={{ mt: 2 }}
+              >
+                Personal Projects:
+              </Typography>
+              <Typography
+                gutterBottom
+                color="grey"
+                sx={{ marginTop: "2px", marginBottom: "3px" }}
+              >
+                {resumeData?.professionalInfo?.project || "provide a project to be listed"}
               </Typography>
             </Grid>
 
@@ -157,16 +162,14 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
                 gutterBottom
                 sx={{ mt: 2 }}
               >
-                Personal Projects:
+                Accomplishments:
               </Typography>
               <Typography
                 gutterBottom
                 color="grey"
                 sx={{ marginTop: "2px", marginBottom: "3px" }}
               >
-                {resumeData?.professionalInfo?.project !== ""
-                  ? resumeData?.professionalInfo?.project
-                  : "provide a project to be listed"}
+                {resumeData?.professionalInfo?.accomp || "provide your accomplishments please"}
               </Typography>
             </Grid>
 
@@ -189,9 +192,7 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
                 color="grey"
                 sx={{ marginTop: "2px", marginBottom: "3px" }}
               >
-                {resumeData?.professionalInfo?.cert !== ""
-                  ? resumeData?.professionalInfo?.cert
-                  : "provide a certification to be listed"}
+                {resumeData?.professionalInfo?.cert || "provide a certification to be listed"}
               </Typography>
             </Grid>
 
@@ -199,7 +200,7 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
               item
               xs={12}
               sm={6}
-              sx={{ marginTop: "20px", marginBottom: "-10px" }}
+              sx={{ marginTop: "20px", marginBottom: "15px" }}
             >
               <Typography
                 variant="h5"
@@ -207,16 +208,14 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
                 gutterBottom
                 sx={{ mt: 2 }}
               >
-                Accomplishments:
+                Interests:
               </Typography>
               <Typography
                 gutterBottom
                 color="grey"
                 sx={{ marginTop: "2px", marginBottom: "3px" }}
               >
-                {resumeData?.professionalInfo?.accomp !== ""
-                  ? resumeData?.professionalInfo?.accomp
-                  : "provide your accomplishments please"}
+                {resumeData?.personalInfo?.interests || "provide use with examples in which things you are interested"}
               </Typography>
             </Grid>
 
@@ -252,40 +251,9 @@ const ReviewResume1 = ({ resumeData, isLoading, apiState }) => {
                   ))
                 : "Please provide your skills"}
             </Grid>
-
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              sx={{ marginTop: "20px", marginBottom: "15px" }}
-            >
-              <Typography
-                variant="h5"
-                color="dark-grey"
-                gutterBottom
-                sx={{ mt: 2 }}
-              >
-                Interests:
-              </Typography>
-              <Typography
-                gutterBottom
-                color="grey"
-                sx={{ marginTop: "2px", marginBottom: "3px" }}
-              >
-                {resumeData?.personalInfo?.interests !== ""
-                  ? resumeData?.personalInfo?.interests
-                  : "provide use with examples in which things you are interested"}
-              </Typography>
-            </Grid>
           </Grid>
-        )
-      ) : (
-        <Typography alignItems="center" variant="h4">
-          Error Fetching Data...
-        </Typography>
-      )}
     </>
   );
 };
 
-export default ReviewResume1;
+export default ReviewResume2;

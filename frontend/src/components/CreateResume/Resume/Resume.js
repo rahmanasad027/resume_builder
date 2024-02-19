@@ -97,6 +97,12 @@ const Resume = () => {
               </Step>
             ))}
           </Stepper>
+          {activeStep < 2 ? (
+            <Typography component="h4" variant="h8" align="center">
+            Please Ensure to submit data before moving onto Next. For testing purposes, Inputs are prefilled you can submit it and move to next. if you wish to edit data then press reset.
+          </Typography>
+          ): ''}
+          
           <React.Fragment>
             {getStepContent(activeStep)}
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

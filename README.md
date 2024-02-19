@@ -4,15 +4,25 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 # Directory Structure
-This project is a Resume builder to build interactive resume for yourself. File directory is divided into Four main parts: 
+This project is a Resume builder to build interactive resume for yourself. File directory is divided into Two main parts: 
+Frontend: containing all frontend code: 
 1- Components: includes all the necessary components of this application.
 2- assets: includes things like images.
 3- zustand: includes state management with zustand library which is a light weight easy to use Redux like state management library.
 4- Api: this directory includes hooks for Api calls and an axios middleware.
 
+Backend: containing all backend code: 
+ 1- test: directory contians tests for our API's.
+ 2- Routes: contains routes for sending and recieving data. 
+ 3- Models: defines mongoose schema for documents.
+ 4- Controllers: Our actuall business logic is written here. 
+
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory you can start servers for both frontend and backend. 
+# For frontend:
+
+Navigate to frontend folder i.e. cd frontend. and type:
 
 ### `npm start`
 
@@ -47,27 +57,24 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+# For Backend: 
+Navigate to backend folder i.e. cd backend:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `npm start`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Runs the app in the development mode.
 
-### Code Splitting
+in terminal you will see these two messages: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Server is running on http://localhost:4000
+Successfully connected to Mongo DB
 
-### Analyzing the Bundle Size
+Which means everything is working fine
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### `npm test`
 
-### Making a Progressive Web App
+Launches the test runner in the interactive watch mode.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
 
