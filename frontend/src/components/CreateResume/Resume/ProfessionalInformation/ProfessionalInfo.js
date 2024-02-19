@@ -1,3 +1,5 @@
+// // ProfessionalInfo.js
+
 import React, { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -5,96 +7,46 @@ import TextField from "@mui/material/TextField";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "@mui/material";
 import DatePicker from "react-datepicker";
-import useProfessionalInfoStore from "../../../../zustand/ProfessionalInfoStore";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { professionalInfoAPI } from "../../../../api/professionalInfo";
+import { useProfessionalInfoForm } from "./useProfessionalInfoForm";
 
 const ProfessionalInfo = () => {
-  const professionalInfo = useProfessionalInfoStore(
-    (state) => state.professionalInfo
-  );
-  const setProfessionalInfo = useProfessionalInfoStore(
-    (state) => state.setProfessionalInfo
-  );
-  const resetProfessionalInfo = useProfessionalInfoStore(
-    (state) => state.resetProfessionalInfo
-  );
+  const {
+    professionalInfo,
+    resetProfessionalInfo,
+    handleInputChange,
+    handleWorkInputChange,
+    handleAddWorkExperiences,
+    handleRemoveWorkExperiences,
+    handleWorkDateChanges,
+    handleDataSubmit,
+  } = useProfessionalInfoForm();
 
   // Initialize workExperiences as an empty array if not already set
-  useEffect(() => {
-    if (!professionalInfo.workExperiences) {
-      setProfessionalInfo({ workExperiences: [] });
-    }
-  }, []);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProfessionalInfo({ [name]: value });
+    handleInputChange(e);
   };
 
   const handleWorkChange = (e, index) => {
-    const { name, value } = e.target;
-    setProfessionalInfo({
-      workExperiences: professionalInfo.workExperiences.map((exp, i) =>
-        i === index ? { ...exp, [name]: value } : exp
-      ),
-    });
+    handleWorkInputChange(e, index);
   };
 
   const handleAddWorkExperience = () => {
-    setProfessionalInfo({
-      workExperiences: [
-        ...professionalInfo.workExperiences,
-        {
-          start: null,
-          end: null,
-          work: "",
-        },
-      ],
-    });
+    handleAddWorkExperiences();
   };
 
   const handleRemoveWorkExperience = (index) => {
-    setProfessionalInfo({
-      workExperiences: professionalInfo.workExperiences.filter(
-        (exp, i) => i !== index
-      ),
-    });
+    handleRemoveWorkExperiences(index);
   };
 
   const handleWorkDateChange = (date, index, fieldName) => {
-    setProfessionalInfo({
-      workExperiences: professionalInfo.workExperiences.map((exp, i) =>
-        i === index ? { ...exp, [fieldName]: date } : exp
-      ),
-    });
+    handleWorkDateChanges(date, index, fieldName);
   };
 
   const handleSubmit = () => {
-    professionalInfoAPI(professionalInfo)
-      .then((response) => {
-        toast.success("Data has been sent!", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 2000,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-      })
-      .catch((error) => {
-        toast.error(
-          "An error occurred while sending data. Please try again later.",
-          {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 2000,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-          }
-        );
-        console.error("Error:", error);
-      });
+    handleDataSubmit();
   };
 
   const handleReset = () => {

@@ -1,75 +1,35 @@
+// components/Review.jsx
 import React, { useState, useEffect } from "react";
 import { FormControl, Select, MenuItem } from "@mui/material";
 import { fetchResumeInfoAPI } from "../../../../api/resumeInfo";
-import ReviewResume1 from "./ReviewResume1";
-import ReviewResume2 from "./ReviewResume2";
-import ReviewResume3 from "./ReviewResume3";
-import ReviewResume4 from "./ReviewResume4";
+import Loading from "./Loader";
+import Error from "./ErrorFetching";
+import ReviewResumeLayout from "./ResumeLayouts/ResumeLayouts";
 
 const Review = () => {
   const [selectedFormat, setSelectedFormat] = useState("default");
   const [resumeData, setResumeData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // State to track loading status
+  const [isLoading, setIsLoading] = useState(true);
   const [apiState, setApiState] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchResumeInfoAPI();
-        console.log("resume data: ", data);
         setResumeData(data);
-        setIsLoading(false); // Set loading to false once data is fetched
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching resume data:", error);
-        setIsLoading(false); // Set loading to false in case of an error'
+        setIsLoading(false);
         setApiState(false);
       }
     };
 
-    fetchData(); // Call the async function
+    fetchData();
   }, []);
-
-  console.log("final resume data: ", resumeData);
 
   const handleChange = (event) => {
     setSelectedFormat(event.target.value);
-  };
-
-  // Function to render the appropriate ReviewResume component based on the selected format
-  const renderSelectedResume = () => {
-    switch (selectedFormat) {
-      case "format1":
-        return (
-          <ReviewResume2
-            resumeData={resumeData}
-            isLoading={isLoading}
-            apiState={apiState}
-          />
-        );
-      case "format2":
-        return (
-          <ReviewResume3
-            resumeData={resumeData}
-            isLoading={isLoading}
-            apiState={apiState}
-          />
-        );
-      case "format3":
-        return (
-          <ReviewResume4
-            resumeData={resumeData}
-            isLoading={isLoading}
-            apiState={apiState}
-          />
-        );
-      default:
-        return (
-          <ReviewResume1
-            resumeData={resumeData}
-            isLoading={isLoading}
-            apiState={apiState}
-          />
-        );
-    }
   };
 
   return (
@@ -91,7 +51,13 @@ const Review = () => {
           <MenuItem value="format3">Format 3</MenuItem>
         </Select>
       </FormControl>
-      {renderSelectedResume()}
+      {isLoading ? (
+        <Loading />
+      ) : !apiState ? (
+        <Error />
+      ) : (
+        <ReviewResumeLayout format={selectedFormat} resumeData={resumeData} />
+      )}
     </>
   );
 };

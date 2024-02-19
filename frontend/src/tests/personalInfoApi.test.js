@@ -28,7 +28,7 @@ describe("personalInfoAPI", () => {
     // Expect apiCaller to have been called with the correct parameters
     expect(apiCaller).toHaveBeenCalledWith({
       method: "POST",
-      url: "http://localhost:3010/data",
+      url: "http://localhost:4000/data",
       data,
     });
   });
