@@ -11,7 +11,7 @@ const app = express();
 // Middleware
 app.use(cors(
   {
-    origin: 'https://resume-builder-alpha-pearl.vercel.app/',
+    origin: 'https://resume-builder-1wqd.vercel.app/',
     methods: ['POST', 'GET'],
     credentials:'true'
   }
