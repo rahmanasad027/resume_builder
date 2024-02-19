@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require("cors");
+// const cors = require("cors");
 const connectDB = require("./dbConnection");
 const mongoose = require("mongoose");
 const personalInfoRoute = require("./routes/personalInfoRoute");
@@ -9,10 +9,10 @@ const resumeInfoRoute = require("./routes/resumeInfoRoute");
 const app = express();
 
 // Middleware new 1
-app.use(cors({
-  origin: 'https://resume-builder-frontend-seven.vercel.app',
-  credentials: true
-}));
+// app.use(cors({
+//   origin: 'https://resume-builder-frontend-seven.vercel.app',
+//   credentials: true
+// }));
 app.use(express.json());
 
 // initializing DB connection
