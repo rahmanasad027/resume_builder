@@ -10,8 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import {usePersonalInfoForm} from './usePersonalInfo'
 
 const PersonalInfo = () => {
-  const {personalInfo , resetPersonalInfo, handleNameChange, handleDataSubmit} = usePersonalInfoForm()
-
+  const {personalInfo , resetPersonalInfo , handleNameChange, handleDataSubmit} = usePersonalInfoForm()
   // to manage change in states for input fields
   const handleChange = (e) => {
     handleNameChange(e)

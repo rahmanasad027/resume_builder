@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { professionalInfoAPI } from "../../../../api/professionalInfo";
 import useProfessionalInfoStore from "../../../../zustand/ProfessionalInfoStore";
+import useDisabilityStore from '../../../../zustand/LoaderStore'
 
 export function useProfessionalInfoForm() {
   const professionalInfo = useProfessionalInfoStore(
@@ -14,6 +15,8 @@ export function useProfessionalInfoForm() {
   const resetProfessionalInfo = useProfessionalInfoStore(
     (state) => state.resetProfessionalInfo
   );
+
+  const setButtonDisabled = useDisabilityStore(state => state.setDisability)
 
   useEffect(() => {
     if (!professionalInfo.workExperiences) {
@@ -65,8 +68,10 @@ export function useProfessionalInfoForm() {
   };
 
   const handleDataSubmit = () => {
+    setButtonDisabled(true)
     professionalInfoAPI(professionalInfo)
       .then((response) => {
+        setButtonDisabled(false)
         toast.success("Data has been sent!", {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 2000,
@@ -76,6 +81,7 @@ export function useProfessionalInfoForm() {
         });
       })
       .catch((error) => {
+        setButtonDisabled(false)
         toast.error(
           "An error occurred while sending data. Please try again later.",
           {

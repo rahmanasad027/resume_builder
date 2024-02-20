@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PersonalInfo from "./PersonalInformation/PersonalInfo";
 import ProfessionalInfo from "./ProfessionalInformation/ProfessionalInfo";
 import Review from "./ReviewResume/Review";
+import useDisabilityStore from '../../../zustand/LoaderStore'
 // Copyright Function outside of Resume component scope for copyright text in bottom
 function Copyright() {
   return (
@@ -54,6 +55,7 @@ function getStepContent(step) {
 const Resume = () => {
   //  the state to manage going to next step or coming back to the previous step
   const [activeStep, setActiveStep] = useState(0);
+  const buttonDisabled = useDisabilityStore(state => state.disabled)
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -98,7 +100,7 @@ const Resume = () => {
             ))}
           </Stepper>
           {activeStep < 2 ? (
-            <Typography component="h4" variant="h8" align="center">
+            <Typography color='red' component="h4" variant="h8" align="center">
             Please Ensure to submit data before moving onto Next. For testing purposes, Inputs are prefilled you can submit it and move to next. if you wish to edit data then press reset.
           </Typography>
           ): ''}
@@ -107,7 +109,7 @@ const Resume = () => {
             {getStepContent(activeStep)}
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
               {activeStep !== 0 && (
-                <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
+                <Button disabled={buttonDisabled} onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                   Back
                 </Button>
               )}
@@ -117,6 +119,7 @@ const Resume = () => {
                 <Button
                   variant="contained"
                   onClick={handleNext}
+                  disabled={buttonDisabled}
                   sx={{ mt: 3, ml: 1 }}
                 >
                   Next
