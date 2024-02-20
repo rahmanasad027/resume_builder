@@ -1,3 +1,7 @@
+# Type: "git checkout main" To ensure smooth test cases running
+
+# Current default Branch vercel-deployment1 is for production purposes.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
